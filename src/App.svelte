@@ -66,45 +66,46 @@
   }
 </script>
 
-<main class="min-h-screen bg-background px-4 py-8 text-foreground sm:px-6 lg:px-8">
-  <div class="mx-auto grid w-full max-w-5xl gap-8">
-    <section class="grid gap-4 text-center sm:text-left">
-      <div class="mx-auto w-fit rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground sm:mx-0">
-        Svelte + shadcn-svelte
-      </div>
-      <div class="grid gap-3">
-        <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">游戏基质词条查询工具</h1>
-        <p class="max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-          从本地 sites.json 读取重度能量淤积点数据，按基础属性、附加属性和技能属性即时筛选。
+<main class="min-h-screen bg-background px-3 py-4 text-foreground sm:px-4 lg:px-6">
+  <div class="mx-auto grid w-full max-w-7xl gap-4">
+    <section class="grid gap-3 text-center sm:text-left">
+      <div class="grid gap-1">
+        <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">游戏基质词条查询工具</h1>
+        <p class="max-w-3xl text-sm text-muted-foreground">
+          从本地 sites.json 读取数据，按基础属性、附加属性和技能属性即时筛选。
         </p>
       </div>
-      <div class="grid gap-3 sm:grid-cols-3">
-        <div class="rounded-xl border border-border bg-card p-4 text-card-foreground">
-          <p class="text-sm text-muted-foreground">静态数据源</p>
-          <p class="mt-1 text-2xl font-semibold">/data/sites.json</p>
+      <div class="grid gap-2 sm:grid-cols-3">
+        <div class="rounded-lg border border-border bg-card px-3 py-2 text-card-foreground">
+          <p class="text-xs text-muted-foreground">静态数据源</p>
+          <p class="mt-0.5 text-sm font-semibold">/data/sites.json</p>
         </div>
-        <div class="rounded-xl border border-border bg-card p-4 text-card-foreground">
-          <p class="text-sm text-muted-foreground">已加载点位</p>
-          <p class="mt-1 text-2xl font-semibold">{sites.length}</p>
+        <div class="rounded-lg border border-border bg-card px-3 py-2 text-card-foreground">
+          <p class="text-xs text-muted-foreground">已加载点位</p>
+          <p class="mt-0.5 text-sm font-semibold">{sites.length}</p>
         </div>
-        <div class="rounded-xl border border-border bg-card p-4 text-card-foreground">
-          <p class="text-sm text-muted-foreground">可筛选词条</p>
-          <p class="mt-1 text-2xl font-semibold">{termCount}</p>
+        <div class="rounded-lg border border-border bg-card px-3 py-2 text-card-foreground">
+          <p class="text-xs text-muted-foreground">可筛选词条</p>
+          <p class="mt-0.5 text-sm font-semibold">{termCount}</p>
         </div>
       </div>
     </section>
 
-    <FilterPanel
-      {filters}
-      options={termOptions}
-      {isLoading}
-      disabled={Boolean(error)}
-      totalCount={sites.length}
-      resultCount={filteredSites.length}
-      onChange={handleFilterChange}
-      onReset={handleReset}
-    />
+    <div class="grid gap-4 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-start">
+      <div class="lg:sticky lg:top-4">
+        <FilterPanel
+          {filters}
+          options={termOptions}
+          {isLoading}
+          disabled={Boolean(error)}
+          totalCount={sites.length}
+          resultCount={filteredSites.length}
+          onChange={handleFilterChange}
+          onReset={handleReset}
+        />
+      </div>
 
-    <SiteResults sites={filteredSites} {filters} {isLoading} {error} totalCount={sites.length} />
+      <SiteResults sites={filteredSites} {filters} {isLoading} {error} totalCount={sites.length} />
+    </div>
   </div>
 </main>

@@ -20,16 +20,18 @@
   let hasActiveFilters = $derived(Boolean(filters.base || filters.extra || filters.skill));
 </script>
 
-<section class="grid gap-4">
-  <div class="flex flex-col gap-1">
-    <h2 class="text-xl font-semibold tracking-tight">查询结果</h2>
-    <p class="text-sm text-muted-foreground">
+<section class="grid gap-3">
+  <div class="flex items-end justify-between gap-3">
+    <div>
+      <h2 class="text-lg font-semibold tracking-tight">查询结果</h2>
+      <p class="text-sm text-muted-foreground">
       {#if hasActiveFilters}
         当前条件匹配 {sites.length} 个点位。
       {:else}
         未设置筛选条件，展示全部 {totalCount} 个点位。
       {/if}
-    </p>
+      </p>
+    </div>
   </div>
 
   {#if isLoading}
@@ -45,7 +47,7 @@
       <Card.Content class="py-8 text-center text-sm text-muted-foreground">没有找到符合当前条件的点位。</Card.Content>
     </Card.Root>
   {:else}
-    <div class="grid gap-4">
+    <div class="grid gap-3 xl:grid-cols-2">
       {#each sites as site (site.id)}
         <SiteCard {site} {filters} />
       {/each}

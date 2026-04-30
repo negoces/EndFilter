@@ -16,23 +16,23 @@
   }
 </script>
 
-<Card.Root>
-  <Card.Header>
-    <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+<Card.Root class="gap-3 py-3">
+  <Card.Header class="px-3">
+    <div class="flex items-start justify-between gap-3">
       <div>
         <Card.Title>{site.name}</Card.Title>
         <Card.Description>
           {site.location.region} / {site.location.subRegion} / {site.location.spot}
         </Card.Description>
       </div>
-      <Badge>匹配结果</Badge>
+      <Badge>匹配</Badge>
     </div>
   </Card.Header>
-  <Card.Content class="grid gap-4">
+  <Card.Content class="grid gap-3 px-3">
     {#each groups as group}
-      <section class="grid gap-2">
-        <h3 class="text-sm font-medium text-muted-foreground">{group.label}</h3>
-        <div class="flex flex-wrap gap-2">
+      <section class="grid gap-1.5">
+        <h3 class="text-xs font-medium text-muted-foreground">{group.label}</h3>
+        <div class="flex flex-wrap gap-1.5">
           {#each site.terms[group.category] as term}
             <Badge variant={isSelected(group.category, term) ? 'default' : 'outline'}>{term}</Badge>
           {/each}
